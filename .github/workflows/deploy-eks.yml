@@ -66,3 +66,5 @@ jobs:
 
           # Wait until rollout is complete (zero downtime)
           kubectl rollout status deployment/$APP_NAME --timeout=120s
+          
+          
