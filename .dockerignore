@@ -1,0 +1,27 @@
+# Gradle / build output
+/build/
+/.gradle/
+/out/
+
+# IntelliJ IDEA / JetBrains
+.idea/
+*.iml
+
+# Git
+.git/
+.gitignore
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+tmp/
+temp/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Dockerfile itself (optional, if you don't want it copied)
+/Dockerfile

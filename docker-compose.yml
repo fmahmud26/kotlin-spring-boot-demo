@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+  springboot-app:
+    build: .
+    container_name: kotlin-springboot
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+    restart: unless-stopped
