@@ -8,5 +8,5 @@ spec:
     app: kotlin-spring-boot-demo
   ports:
     - protocol: TCP
-      port: 80         # ELB listens on 80
+      port: 80         # ELB listens on port 80
       targetPort: 8080 # Container listens on 8080
