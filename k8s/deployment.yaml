@@ -11,9 +11,6 @@ spec:
       app: kotlin-spring-boot-demo
   strategy:
     type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: 0
-      maxSurge: 1
   template:
     metadata:
       labels:
@@ -21,7 +18,7 @@ spec:
     spec:
       containers:
         - name: kotlin-spring-boot-demo
-          image: fmahmud26/kotlin-spring-boot-demo:latest
+          image: fmahmud26/kotlin-spring-boot-demo:${IMAGE_TAG}
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
@@ -43,18 +40,3 @@ spec:
             periodSeconds: 5
       imagePullSecrets:
         - name: dockerhub-secret
-      tolerations:
-        - key: "node.kubernetes.io/memory-pressure"
-          operator: "Exists"
-          effect: "NoSchedule"
-        - key: "node.kubernetes.io/network-unavailable"
-          operator: "Exists"
-          effect: "NoSchedule"
-        - key: "node.kubernetes.io/not-ready"
-          operator: "Exists"
-          effect: "NoExecute"
-          tolerationSeconds: 300
-        - key: "node.kubernetes.io/unreachable"
-          operator: "Exists"
-          effect: "NoExecute"
-          tolerationSeconds: 300
