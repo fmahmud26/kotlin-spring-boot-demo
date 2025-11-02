@@ -61,11 +61,11 @@ jobs:
       # Deploy to EKS
       - name: Deploy to EKS
         run: |
-          # Application name variable
-          APP_NAME=kotlin-spring-boot-demo
+          # Apply Kubernetes manifests (deployment + service)
+          kubectl apply -f k8s/deployment.yaml
+          kubectl apply -f k8s/service.yaml
 
-          # Update Deployment image
-          kubectl set image deployment/$APP_NAME $APP_NAME=${{ secrets.DOCKER_USERNAME }}/$APP_NAME:latest
-          
           # Wait until rollout is complete
+          APP_NAME=kotlin-spring-boot-demo
           kubectl rollout status deployment/$APP_NAME
+      
