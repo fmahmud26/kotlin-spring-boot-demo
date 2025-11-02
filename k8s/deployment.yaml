@@ -22,6 +22,7 @@ spec:
       containers:
         - name: kotlin-spring-boot-demo
           image: fmahmud26/kotlin-spring-boot-demo:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
           env:
