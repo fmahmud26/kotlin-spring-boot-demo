@@ -25,7 +25,8 @@ jobs:
       - name: Install kubectl
         uses: azure/setup-kubectl@v4
         with:
-          version: 'v1.30.0'
+          version: '<version>' # default is latest stable
+          id: install
 
       # Configure AWS credentials for EKS
       - name: Configure AWS credentials
@@ -58,18 +59,6 @@ jobs:
       # Deploy manifests to EKS
       - name: Deploy to EKS
         run: |
-          APP_NAME=kotlin-spring-boot-demo
-
-          # Ensure Docker Hub secret exists
-          kubectl get secret dockerhub-secret || \
-            kubectl create secret docker-registry dockerhub-secret \
-              --docker-username=${{ secrets.DOCKER_USERNAME }} \
-              --docker-password=${{ secrets.DOCKER_PASSWORD }} \
-              --docker-email=firozmahmud26@gmail.com
-
-          # Apply Kubernetes manifests
           kubectl apply -f k8s/deployment.yaml
           kubectl apply -f k8s/service.yaml
 
-          # Wait for rollout to finish
-          kubectl rollout status deployment/$APP_NAME --timeout=180s
