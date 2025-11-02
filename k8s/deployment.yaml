@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kotlin-spring-boot-demo
+  labels:
+    app: kotlin-spring-boot-demo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: kotlin-spring-boot-demo
+  template:
+    metadata:
+      labels:
+        app: kotlin-spring-boot-demo
+    spec:
+      containers:
+        - name: kotlin-spring-boot-demo
+          image: fmahmud26/kotlin-spring-boot-demo:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: production
