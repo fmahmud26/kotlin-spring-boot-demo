@@ -5,7 +5,7 @@ metadata:
   labels:
     app: kotlin-spring-boot-demo
 spec:
-  replicas: 2
+  replicas: 1   # Start with 1 for immediate scheduling
   selector:
     matchLabels:
       app: kotlin-spring-boot-demo
@@ -19,6 +19,8 @@ spec:
       labels:
         app: kotlin-spring-boot-demo
     spec:
+      nodeSelector:
+        eks.amazonaws.com/nodegroup: default  # Adjust node group
       containers:
         - name: kotlin-spring-boot-demo
           image: fmahmud26/kotlin-spring-boot-demo:latest
@@ -29,11 +31,11 @@ spec:
               value: production
           resources:
             requests:
-              memory: "128Mi"
-              cpu: "50m"
+              memory: "64Mi"
+              cpu: "25m"
             limits:
-              memory: "256Mi"
-              cpu: "200m"
+              memory: "128Mi"
+              cpu: "100m"
           readinessProbe:
             httpGet:
               path: /actuator/health
