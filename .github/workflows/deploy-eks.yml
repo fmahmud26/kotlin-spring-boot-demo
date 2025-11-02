@@ -23,7 +23,7 @@ jobs:
 
       # Install kubectl (Azure action, similar to Node workflow)
       - name: Install kubectl
-        uses: azure/setup-kubectl@v2
+        uses: azure/setup-kubectl@v4
         with:
           version: 'v1.30.0'
 
